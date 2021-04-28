@@ -117,7 +117,8 @@ const fpscanner = (function () {
         addTestResult(() => {
             let testResult;
             if (/Chrome/.test(fingerprint.userAgent)) {
-                testResult = fingerprint.webDriver ? INCONSISTENT : CONSISTENT;
+                // New chrome versions have webDriver set to false
+                testResult = fingerprint.webDriver ? UNSURE : CONSISTENT;
             } else {
                 // Safari, Firefox have a webriver, but it is set to false
                 testResult = fingerprint.webDriver && fingerprint.webDriverValue ? INCONSISTENT : CONSISTENT;
